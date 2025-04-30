@@ -1,0 +1,37 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'produtos/css/css.css' %}">
+</head>
+<body>
+    <h1>Olá {{nome}}, tudo bem?</h1>
+
+    <form action="{% url 'ver_produto' %}" method="POST"> 
+        {% csrf_token %}
+        <input type="text" name="nome" placeholder="Digite seu nome" required>
+        <br><br>
+        <input type="number" name="idade" placeholder="Digite sua idade" >
+        <br><br>
+
+        <!-- Três botões com valores diferentes -->
+        <button type="submit" name="acao" value="criar">Criar</button>
+        <button type="submit" name="acao" value="deletar">Deletar</button>
+        <button type="submit" name="acao" value="pesquisar">Pesquisar</button>
+    </form>
+<!--
+    {% if pessoas %}
+        <h2>Resultados:</h2>
+        <ul>
+            {% for pessoa in pessoas %}
+                <li>{{ pessoa.nome }} - {{ pessoa.idade }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+-->
+</body>
+</html>
