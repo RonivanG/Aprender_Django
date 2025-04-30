@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Pessoa
+from .models import NovaPessoa
 
 def minha_pagina(request):
     return render(request, 'index.html')
@@ -15,15 +15,15 @@ def ver_produto(request):
         acao = request.POST.get('acao')  # pega o valor do botão clicado
 
         if acao == "criar":
-            if Pessoa.objects.filter(nome=nome).exists():
+            if NovaPessoa.objects.filter(nome=nome).exists():
                 return HttpResponse("Usuário já cadastrado.")
             else:
-                pessoa = Pessoa(nome=nome, idade=idade)
+                pessoa = NovaPessoa(nome=nome, idade=idade)
                 pessoa.save()
                 return HttpResponse("Usuário cadastrado com sucesso.")
 
         elif acao == "deletar":
-            pessoas = Pessoa.objects.filter(nome=nome)
+            pessoas = NovaPessoa.objects.filter(nome=nome)
             if pessoas.exists():
                 pessoas.delete()
                 return HttpResponse("Usuário deletado com sucesso.")
@@ -31,7 +31,7 @@ def ver_produto(request):
                 return HttpResponse("Usuário não encontrado para deletar.")
 
         elif acao == "pesquisar":
-            pessoas = Pessoa.objects.filter(nome=nome)
+            pessoas = NovaPessoa.objects.filter(nome=nome)
             if pessoas.exists():
                 return render(request, 'ver_produto.html', {'pessoas': pessoas, 'nome': nome})
             else:
