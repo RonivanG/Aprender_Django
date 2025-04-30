@@ -24,11 +24,11 @@
         <button type="submit" name="acao" value="pesquisar">Pesquisar</button>
     </form>
 <!--
-    {% if pessoas %}
+    {% if NovaPessoa %}
         <h2>Resultados:</h2>
         <ul>
-            {% for pessoa in pessoas %}
-                <li>{{ pessoa.nome }} - {{ pessoa.idade }}</li>
+            {% for NovaPessoa in NovaPessoa %}
+                <li>{{ NovaPessoa.nome }} - {{ NovaPessoa.idade }}</li>
             {% endfor %}
         </ul>
     {% endif %}

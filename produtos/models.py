@@ -8,9 +8,10 @@ class Pessoa(models.Model):
     def __str__(self) -> str:
         return self.nome
 '''
+
 class NovaPessoa(models.Model):
     nome = models.CharField(max_length=100)
-    idade = models.IntegerField()
+    data_nascimento = models.DateField(default="2000-01-01")  # Agora você armazena a data de nascimento
     rua = models.CharField(max_length=100)
     numero = models.IntegerField()
     bairro = models.CharField(max_length=100)
@@ -19,3 +20,13 @@ class NovaPessoa(models.Model):
 
     def __str__(self):
         return self.nome
+
+    @property
+    def idade(self):
+        # Aqui você pode calcular a idade com base na data de nascimento
+        from datetime import date
+        today = date.today()
+        idade = today.year - self.data_nascimento.year
+        if today.month < self.data_nascimento.month or (today.month == self.data_nascimento.month and today.day < self.data_nascimento.day):
+            idade -= 1
+        return idade
