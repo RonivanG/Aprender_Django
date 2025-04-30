@@ -16,33 +16,52 @@ def cadastro_crianca(request):
         return render(request, 'cadastro.html')
 
     elif request.method == "POST":
+        # Recebendo os dados do formulário
         nome = request.POST.get('nome')
-        idade = request.POST.get('idade')
-        acao = request.POST.get('acao')  # pega o valor do botão clicado
+        data_nascimento = request.POST.get('data_nascimento')
+        rua = request.POST.get('rua')
+        numero = request.POST.get('numero')
+        bairro = request.POST.get('bairro')
+        responsavel = request.POST.get('responsavel')
+        telefone = request.POST.get('telefone')
+        acao = request.POST.get('acao')  # Pega o valor do botão clicado
 
+        # Ação de cadastro (Criar)
         if acao == "criar":
+            # Verifica se já existe uma pessoa com o mesmo nome
             if NovaPessoa.objects.filter(nome=nome).exists():
                 return HttpResponse("Usuário já cadastrado.")
             else:
-                pessoa = NovaPessoa(nome=nome, idade=idade)
-                pessoa.save()
+                # Cria um novo objeto NovaPessoa
+                pessoa = NovaPessoa(
+                    nome=nome,
+                    data_nascimento=data_nascimento,
+                    rua=rua,
+                    numero=numero,
+                    bairro=bairro,
+                    nome_responsavel=responsavel,
+                    telefone=telefone
+                )
+                pessoa.save()  # Salva no banco de dados
                 return HttpResponse("Usuário cadastrado com sucesso.")
 
-        elif acao == "deletar":
-            pessoas = NovaPessoa.objects.filter(nome=nome)
-            if pessoas.exists():
-                pessoas.delete()
-                return HttpResponse("Usuário deletado com sucesso.")
-            else:
-                return HttpResponse("Usuário não encontrado para deletar.")
-
+        # Ação de pesquisa (Pesquisar)
         elif acao == "pesquisar":
-            pessoas = NovaPessoa.objects.filter(nome=nome)
+            pessoas = NovaPessoa.objects.filter(nome=nome)  # Pesquisa pelo nome
             if pessoas.exists():
+                # Se encontrar, envia os dados para o template para exibição
                 return render(request, 'cadastro.html', {'pessoas': pessoas, 'nome': nome})
             else:
                 return HttpResponse("Usuário não encontrado.")
 
+        # Ação de deletar (Deletar)
+        elif acao == "deletar":
+            pessoas = NovaPessoa.objects.filter(nome=nome)  # Busca pelo nome
+            if pessoas.exists():
+                pessoas.delete()  # Deleta o usuário
+                return HttpResponse("Usuário deletado com sucesso.")
+            else:
+                return HttpResponse("Usuário não encontrado para deletar.")
+
         else:
             return HttpResponse("Ação inválida.")
-
