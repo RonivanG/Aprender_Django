@@ -9,9 +9,14 @@
     <link rel="stylesheet" href="{% static 'produtos/css/css.css' %}">
 </head>
 <body>
+    <nav>
+        <a href="{% url 'minha_pagina' %}">Home</a>
+        <a href="{% url 'sobre_projeto' %}">Sobre</a>
+        <a href="{% url 'login' %}">login</a>
+    </nav>
     <h1>Olá {{nome}}, tudo bem?</h1>
 
-    <form action="{% url 'ver_produto' %}" method="POST"> 
+    <form action="{% url 'cadastro_crianca' %}" method="POST"> 
         {% csrf_token %}
         <input type="text" name="nome" placeholder="Digite seu nome" required>
         <br><br>

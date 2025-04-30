@@ -5,9 +5,15 @@ from .models import NovaPessoa
 def minha_pagina(request):
     return render(request, 'index.html')
 
-def ver_produto(request):
+def sobre_projeto(request):
+    return render(request, 'sobre.html')
+
+def login(request):
+    return render(request, 'login.html')
+
+def cadastro_crianca(request):
     if request.method == "GET":
-        return render(request, 'ver_produto.html')
+        return render(request, 'cadastro.html')
 
     elif request.method == "POST":
         nome = request.POST.get('nome')
@@ -33,13 +39,10 @@ def ver_produto(request):
         elif acao == "pesquisar":
             pessoas = NovaPessoa.objects.filter(nome=nome)
             if pessoas.exists():
-                return render(request, 'ver_produto.html', {'pessoas': pessoas, 'nome': nome})
+                return render(request, 'cadastro.html', {'pessoas': pessoas, 'nome': nome})
             else:
                 return HttpResponse("Usuário não encontrado.")
 
         else:
             return HttpResponse("Ação inválida.")
 
-
-def inserir_produto(request):
-    return render(request, 'inserir_produto.html')

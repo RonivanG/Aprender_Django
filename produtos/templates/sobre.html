@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrelas Mudam de Lugar - Descrição do Projeto</title>
+    <link rel="stylesheet" href="{% static 'produtos/css/css.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="{% url 'minha_pagina' %}">Home</a>
+        <a href="{% url 'cadastro_crianca' %}">Cadastrar</a> <!-- Link para ver produto -->
+        <a href="{% url 'login' %}">login</a>
+    </nav>
+
+    <header>
+        <h1>Estrelas Mudam de Lugar</h1>
+        <p><strong>Uma história de coragem, mudança e novos horizontes.</strong></p>
+    </header>
+
+    <section>
+        <h2>Sobre o Projeto</h2>
+        <p>O projeto **"Estrelas Mudam de Lugar"** é uma jornada emocional e inspiradora que acompanha a vida de uma jovem chamada Clara, que, após uma reviravolta em sua vida, decide recomeçar em uma nova cidade. Ela busca encontrar seu lugar no mundo, enquanto enfrenta desafios pessoais e emociona o público com sua determinação.</p>
+        <p>Através de metáforas e simbologias, o projeto explora o tema das mudanças e como elas são necessárias para o crescimento pessoal. "Estrelas Mudam de Lugar" é mais do que uma história de superação; é uma reflexão sobre como nos adaptamos aos novos ciclos da vida.</p>
+
+        <h2>Objetivo</h2>
+        <p>O principal objetivo do projeto é inspirar as pessoas a enfrentarem as adversidades da vida com coragem, encontrando sua própria luz, mesmo nos momentos mais difíceis. A história de Clara serve como um lembrete de que, assim como as estrelas, nossas vidas também podem se mover e mudar de lugar, e isso pode ser algo belo e transformador.</p>
+
+        <h2>Por que "Estrelas Mudam de Lugar"?</h2>
+        <p>O título reflete o movimento das estrelas no céu, um símbolo de transformação constante. Assim como as estrelas, a vida é dinâmica, e muitas vezes precisamos "mudar de lugar" para alcançar novos horizontes, aprender e crescer.</p>
+    </section>
+
+    <footer>
+        <p>Este projeto é dedicado a todos que acreditam que mudanças podem ser poderosas e transformadoras.</p>
+    </footer>
+
+</body>
+</html>
