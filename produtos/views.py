@@ -1,6 +1,36 @@
-from django.shortcuts import render
+from django.contrib.auth import authenticate, login as auth_login # Renomeia login para evitar conflito
+from django.contrib import messages # Opcional: para exibir mensagens de erro
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import NovaPessoa
+from django import forms
+from django.contrib.auth.models import User
+
+class ResetSenhaForm(forms.Form):
+    username = forms.CharField(max_length=150, label='Nome de Usuário')
+    new_password = forms.CharField(widget=forms.PasswordInput, label='Nova Senha')
+    confirm_new_password = forms.CharField(widget=forms.PasswordInput, label='Confirmar Nova Senha')
+
+    def clean(self):
+        cleaned_data = super().clean()
+        new_password = cleaned_data.get('new_password')
+        confirm_new_password = cleaned_data.get('confirm_new_password')
+
+        if new_password and confirm_new_password and new_password != confirm_new_password:
+            raise forms.ValidationError("As senhas não coincidem.")
+        return cleaned_data
+
+    def save(self):
+        username = self.cleaned_data['username']
+        new_password = self.cleaned_data['new_password']
+        try:
+            user = User.objects.get(username=username)
+            user.set_password(new_password)
+            user.save()
+            return True
+        except User.DoesNotExist:
+            self.add_error('username', 'Usuário não encontrado.')
+            return False
 
 def minha_pagina(request):
     return render(request, 'index.html')
@@ -9,7 +39,40 @@ def sobre_projeto(request):
     return render(request, 'sobre.html')
 
 def login(request):
-    return render(request, 'login.html')
+    if request.method == 'POST':
+        # Obtém o username e password do formulário enviado via POST
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        # Autentica o usuário com as credenciais fornecidas
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            # Se o usuário for autenticado com sucesso, faz o login
+            auth_login(request, user)
+            # Redireciona para a página inicial (ajuste a URL conforme necessário)
+            return redirect('/') # Ou para outra URL como 'home'
+        else:
+            # Se a autenticação falhar, exibe uma mensagem de erro (opcional)
+            messages.error(request, 'Usuário ou senha inválidos.')
+            # Renderiza a página de login novamente
+            return render(request, 'login.html')
+    else:
+        # Se a requisição for GET, apenas renderiza a página de login
+        return render(request, 'login.html')
+    
+def resetar_senha(request):
+    if request.method == 'POST':
+        form = ResetSenhaForm(request.POST)
+        if form.is_valid():
+            if form.save():
+                messages.success(request, 'Senha alterada com sucesso!')
+                return redirect('login')  # Redirecione para a página de login após o sucesso
+            else:
+                messages.error(request, 'Erro ao alterar a senha. Verifique o nome de usuário.')
+    else:
+        form = ResetSenhaForm()
+    return render(request, 'reset_senha.html', {'form': form})
 
 def cadastro_crianca(request):
     if request.method == "GET":
