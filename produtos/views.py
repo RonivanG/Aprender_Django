@@ -8,60 +8,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 
-class ResetSenhaForm(forms.Form):
-    username = forms.CharField(max_length=150, label='Nome de Usuário')
-    new_password = forms.CharField(widget=forms.PasswordInput, label='Nova Senha')
-    confirm_new_password = forms.CharField(widget=forms.PasswordInput, label='Confirmar Nova Senha')
-
-    def clean(self):
-        cleaned_data = super().clean()
-        new_password = cleaned_data.get('new_password')
-        confirm_new_password = cleaned_data.get('confirm_new_password')
-
-        if new_password and confirm_new_password and new_password != confirm_new_password:
-            raise forms.ValidationError("As senhas não coincidem.")
-        return cleaned_data
-
-    def save(self):
-        username = self.cleaned_data['username']
-        new_password = self.cleaned_data['new_password']
-        try:
-            user = User.objects.get(username=username)
-            user.set_password(new_password)
-            user.save()
-            return True
-        except User.DoesNotExist:
-            self.add_error('username', 'Usuário não encontrado.')
-            return False
-
 def minha_pagina(request):
     return render(request, 'index.html')
 
 def sobre_projeto(request):
     return render(request, 'sobre.html')
-
-def pesquisa_crianca(request):
-    nome_param = request.GET.get('nome')
-    responsavel_param = request.GET.get('responsavel')
-    resultados = []
-
-    if nome_param:
-        if responsavel_param:
-            # Pesquisa por nome E responsável
-            resultados = NovaPessoa.objects.filter(
-                Q(nome__icontains=nome_param) & Q(responsavel__icontains=responsavel_param)
-            )
-        else:
-            # Pesquisa apenas por nome
-            resultados = NovaPessoa.objects.filter(nome__icontains=nome_param)
-    else:
-        # Se nenhum nome foi fornecido (o campo é obrigatório no HTML,
-        # mas é bom ter uma verificação no backend também)
-        mensagem_erro = "O nome da criança é obrigatório para a pesquisa."
-        return render(request, 'pesquisa.html', {'mensagem_erro': mensagem_erro})
-
-    context = {'resultados': resultados}
-    return render(request, 'pesquisa.html', context)
 
 def logout(request):
     auth_logout(request)  # Encerra a sessão do usuário
@@ -89,7 +40,33 @@ def login(request):
     else:
         # Se a requisição for GET, apenas renderiza a página de login
         return render(request, 'login.html')
-    
+  
+class ResetSenhaForm(forms.Form):
+    username = forms.CharField(max_length=150, label='Nome de Usuário')
+    new_password = forms.CharField(widget=forms.PasswordInput, label='Nova Senha')
+    confirm_new_password = forms.CharField(widget=forms.PasswordInput, label='Confirmar Nova Senha')
+
+    def clean(self):
+        cleaned_data = super().clean()
+        new_password = cleaned_data.get('new_password')
+        confirm_new_password = cleaned_data.get('confirm_new_password')
+
+        if new_password and confirm_new_password and new_password != confirm_new_password:
+            raise forms.ValidationError("As senhas não coincidem.")
+        return cleaned_data
+
+    def save(self):
+        username = self.cleaned_data['username']
+        new_password = self.cleaned_data['new_password']
+        try:
+            user = User.objects.get(username=username)
+            user.set_password(new_password)
+            user.save()
+            return True
+        except User.DoesNotExist:
+            self.add_error('username', 'Usuário não encontrado.')
+            return False
+
 def resetar_senha(request):
     if request.method == 'POST':
         form = ResetSenhaForm(request.POST)
@@ -102,6 +79,7 @@ def resetar_senha(request):
     else:
         form = ResetSenhaForm()
     return render(request, 'reset_senha.html', {'form': form})
+
 @login_required
 def cadastro_crianca(request):
     if request.method == "GET":
@@ -120,32 +98,19 @@ def cadastro_crianca(request):
 
         # Ação de cadastro (Criar)
         if acao == "criar":
-            # Verifica se já existe uma pessoa com o mesmo nome
-            if NovaPessoa.objects.filter(nome=nome).exists():
-                return HttpResponse("Usuário já cadastrado.")
-            else:
-                # Cria um novo objeto NovaPessoa
-                pessoa = NovaPessoa(
-                    nome=nome,
-                    data_nascimento=data_nascimento,
-                    rua=rua,
-                    numero=numero,
-                    bairro=bairro,
-                    nome_responsavel=responsavel,
-                    telefone=telefone
-                )
-                pessoa.save()  # Salva no banco de dados
-                return HttpResponse("Usuário cadastrado com sucesso.")
 
-        # Ação de pesquisa (Pesquisar)
-        elif acao == "pesquisar":
-            pessoas = NovaPessoa.objects.filter(nome=nome)  # Pesquisa pelo nome
-            if pessoas.exists():
-                # Se encontrar, envia os dados para o template para exibição
-                return render(request, 'cadastro.html', {'pessoas': pessoas, 'nome': nome})
-            else:
-                return HttpResponse("Usuário não encontrado.")
-
+            # Cria um novo objeto NovaPessoa
+            pessoa = NovaPessoa(
+                nome=nome,
+                data_nascimento=data_nascimento,
+                rua=rua,
+                numero=numero,
+                bairro=bairro,
+                nome_responsavel=responsavel,
+                telefone=telefone
+            )
+            pessoa.save()  # Salva no banco de dados
+            return HttpResponse("Usuário cadastrado com sucesso.")
         # Ação de deletar (Deletar)
         elif acao == "deletar":
             pessoas = NovaPessoa.objects.filter(nome=nome)  # Busca pelo nome
@@ -157,3 +122,28 @@ def cadastro_crianca(request):
 
         else:
             return HttpResponse("Ação inválida.")
+
+@login_required
+def pesquisa_crianca(request):
+    nome_param = request.GET.get('nome')
+    responsavel_param = request.GET.get('nome_responsavel')
+    resultados = []
+
+    if nome_param:
+        if responsavel_param:
+            # Pesquisa por nome E responsável
+            resultados = NovaPessoa.objects.filter(
+                Q(nome__icontains=nome_param) & Q(nome_responsavel__icontains=responsavel_param)
+            )
+        else:
+            # Pesquisa apenas por nome
+            resultados = NovaPessoa.objects.filter(nome__icontains=nome_param)
+    else:
+        # Se nenhum nome foi fornecido (o campo é obrigatório no HTML,
+        # mas é bom ter uma verificação no backend também)
+        mensagem_erro = "O nome da criança é obrigatório para a pesquisa."
+        return render(request, 'pesquisa.html', {'mensagem_erro': mensagem_erro})
+
+    context = {'resultados': resultados}
+    return render(request, 'pesquisa.html', context)
+

@@ -1,15 +1,75 @@
+/* Arquivo: Pesquisar/static/Pesquisar/css/css.css */
+
+/* Estilos gerais do corpo (base) */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7fc;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Menu de navegação fixo no topo (base) */
+nav {
+    background-color: #5c6bc0; /* Um tom de azul */
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav div {
+    display: flex;
+    align-items: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    margin: 0 15px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+nav a:hover {
+    background-color: #3f51b5; /* Um tom mais escuro de azul */
+    transform: translateY(-2px);
+}
+
+/* Estilos para a seção principal (ajustes para o formulário de pesquisa) */
 .container {
     max-width: 960px;
-    margin: 20px auto;
-    padding: 20px;
+    margin: 120px auto 20px auto; /* Ajuste da margem superior para considerar o menu fixo */
+    padding: 30px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Adicionando sombra similar à section do base */
 }
 
 h1, h2 {
     text-align: center;
-    color: #333;
+    color: #3f51b5; /* Tom de azul do título principal */
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-row > div {
+    flex: 1; /* Distribuir espaço igualmente entre os campos do formulário */
 }
 
 .form-group {
@@ -21,16 +81,17 @@ label {
     margin-bottom: 5px;
     font-weight: bold;
     color: #555;
+    font-size: 1em; /* Mantendo o tamanho da fonte do label do base */
 }
 
-input[type="text"],
-button[type="submit"] {
+input[type="text"] {
     width: calc(100% - 12px);
-    padding: 10px;
+    padding: 12px; /* Mantendo o padding do input do base */
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 1em; /* Mantendo o tamanho da fonte do input do base */
+    margin-top: 5px;
 }
 
 button[type="submit"] {
@@ -38,11 +99,17 @@ button[type="submit"] {
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 10px;
+    padding: 12px 15px; /* Mantendo o padding do botão do base */
+    font-size: 1em; /* Mantendo o tamanho da fonte do botão do base */
+    border: none;
+    border-radius: 4px;
+    margin-top: 20px; /* Adicionando margem superior para separar do formulário */
+    width: 100%; /* Ocupar a largura total em telas menores */
 }
 
 button[type="submit"]:hover {
     background-color: #0077b3;
+    opacity: 0.9; /* Adicionando um efeito de hover similar aos outros botões */
 }
 
 .resultados-tabela {
@@ -69,4 +136,36 @@ button[type="submit"]:hover {
 
 .resultados-tabela tbody tr:hover {
     background-color: #e0f7fa;
+}
+
+/* Responsividade para telas menores (base) */
+@media (max-width: 768px) {
+    .container {
+        margin-top: 100px;
+        padding: 20px;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .form-row > div {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    h1, h2 {
+        font-size: 1.8em;
+    }
+
+    label {
+        font-size: 0.9em;
+    }
+
+    input[type="text"],
+    button[type="submit"] {
+        font-size: 0.9em;
+        padding: 10px;
+    }
 }
