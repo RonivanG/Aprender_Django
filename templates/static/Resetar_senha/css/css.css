@@ -1,6 +1,6 @@
-/* Arquivo: Login/static/Login/css/css.css */
+/* Arquivo: Resetar_senha/static/Resetar_senha/css/css.css */
 
-/* Estilos gerais do corpo (base) */
+/* Estilos gerais do corpo */
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
@@ -10,7 +10,7 @@ body {
   line-height: 1.6;
 }
 
-/* Menu de navegação fixo no topo (base) */
+/* Menu de navegação fixo no topo */
 nav {
   background-color: #5c6bc0; /* Um tom de azul */
   padding: 15px 30px;
@@ -45,7 +45,7 @@ nav a:hover {
   transform: translateY(-2px);
 }
 
-/* Estilos para o container da página de login */
+/* Estilos para o container da página de redefinição de senha */
 .login-container {
   display: flex;
   justify-content: center;
@@ -54,7 +54,7 @@ nav a:hover {
   padding: 20px;
 }
 
-/* Estilos para a caixa de login */
+/* Estilos para a caixa de redefinição de senha (igual à do login) */
 .login-box {
   background-color: #fff;
   padding: 30px;
@@ -72,7 +72,7 @@ nav a:hover {
   text-align: center;
 }
 
-/* Estilos para o formulário de login */
+/* Estilos para o formulário de redefinição de senha */
 .login-box form {
   display: flex;
   flex-direction: column;
@@ -111,27 +111,23 @@ nav a:hover {
   opacity: 0.9;
 }
 
-.login-box .links {
-  margin-top: 20px;
-  text-align: center;
-  font-size: 0.9em;
-}
-
-.login-box .links a {
-  color: #3f51b5; /* Tom de azul */
-  text-decoration: none;
-}
-
-.login-box .links a:hover {
-  text-decoration: underline;
-}
-
 .login-box .messages {
-  color: red;
+  color: green; /* Mensagens de sucesso em verde */
   list-style: none;
   padding: 0;
   margin-bottom: 15px;
   text-align: center;
+  font-size: 0.9em;
+}
+
+.login-box .errorlist {
+  color: red;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 15px;
+}
+
+.login-box .errorlist li {
   font-size: 0.9em;
 }
 
@@ -167,8 +163,7 @@ footer a:hover {
   .login-box label,
   .login-box input[type="text"],
   .login-box input[type="password"],
-  .login-box input[type="submit"],
-  .login-box .links {
+  .login-box input[type="submit"] {
       font-size: 0.9em;
   }
 }

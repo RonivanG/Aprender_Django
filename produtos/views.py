@@ -1,10 +1,11 @@
-from django.contrib.auth import authenticate, login as auth_login # Renomeia login para evitar conflito
-from django.contrib import messages # Opcional: para exibir mensagens de erro
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import NovaPessoa
 from django import forms
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 class ResetSenhaForm(forms.Form):
     username = forms.CharField(max_length=150, label='Nome de Usuário')
@@ -37,6 +38,11 @@ def minha_pagina(request):
 
 def sobre_projeto(request):
     return render(request, 'sobre.html')
+
+
+def logout(request):
+    auth_logout(request)  # Encerra a sessão do usuário
+    return redirect('/')  # Redireciona para a página inicial (ou outra página desejada)
 
 def login(request):
     if request.method == 'POST':
@@ -73,7 +79,7 @@ def resetar_senha(request):
     else:
         form = ResetSenhaForm()
     return render(request, 'reset_senha.html', {'form': form})
-
+@login_required
 def cadastro_crianca(request):
     if request.method == "GET":
         return render(request, 'cadastro.html')
