@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro de Criança</title>
     <link rel="stylesheet" href="{% static 'Cadastro/css/css.css' %}" />
-
   </head>
   <body>
     <nav>
@@ -28,6 +27,16 @@
 
     <section>
       <h1>Cadastrar Criança</h1>
+
+      {% if messages %} 
+        {% for message in messages %} 
+          {% if 'success' in message.tags %}
+            <label class="success">{{ message }}</label>
+          {% elif 'error' in message.tags %}
+            <label class="error">{{ message }}</label>
+          {% endif %} 
+        {% endfor %} 
+      {% endif %}
 
       <form action="{% url 'cadastro_crianca' %}" method="POST">
         {% csrf_token %}

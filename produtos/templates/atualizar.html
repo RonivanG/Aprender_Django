@@ -28,6 +28,15 @@
     <section>
         <h1>Editar Criança</h1>
 
+        {% if messages %} 
+            {% for message in messages %} 
+                {% if 'success' in message.tags %}
+                    <label class="success">{{ message }}</label>
+                {% elif 'error' in message.tags %}
+                    <label class="error">{{ message }}</label>
+                {% endif %} 
+            {% endfor %} 
+        {% endif %}
         <form method="POST">
             {% csrf_token %}
 

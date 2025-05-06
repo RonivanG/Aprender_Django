@@ -7,6 +7,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from datetime import date
 
 def minha_pagina(request):
     return render(request, 'index.html')
@@ -111,10 +112,12 @@ def cadastro_crianca(request):
                 telefone=telefone
             )
             pessoa.save()
-            return HttpResponse("Criança cadastrada com sucesso.")
+            messages.success(request, 'Criança cadastrada com sucesso.')
+            return redirect('cadastro_crianca') # Redireciona de volta para a página de cadastro
 
         else:
-            return HttpResponse("Ação inválida.")
+            messages.error(request, 'Ação inválida.') # Adiciona a mensagem de erro
+            return redirect('cadastro_crianca') # Redireciona de volta para a página de cadastro
 
 @login_required
 def atualizar_crianca(request):
@@ -134,9 +137,11 @@ def atualizar_crianca(request):
                 try:
                     crianca = NovaPessoa.objects.get(id=crianca_id_deletar)
                     crianca.delete()
-                    return HttpResponse("Criança deletada com sucesso.")
+                    messages.success(request, 'Apagado cadastrado da Criança com sucesso.')
+                    return redirect('atualizar_crianca') # Redireciona de volta para a página de cadastro
                 except NovaPessoa.DoesNotExist:
-                    return HttpResponse("Criança não encontrada para deletar.")
+                    messages.error(request, 'Criança não encontrada para apagar.')
+                    return redirect('atualizar_crianca') # Redireciona de volta para a página de cadastro
             else:
                 return HttpResponse("ID da criança para deletar não fornecido.")
 
@@ -153,9 +158,15 @@ def atualizar_crianca(request):
                     crianca.nome_responsavel = request.POST.get('responsavel')
                     crianca.telefone = request.POST.get('telefone')
                     crianca.save()
-                    return HttpResponse("Dados da criança atualizados com sucesso.")
+                    messages.success(request, 'Atualizado cadastrado da Criança com sucesso.')
+                    crianca_id = request.GET.get('id')
+                    crianca = None
+                    if crianca_id:
+                        crianca = get_object_or_404(NovaPessoa, id=crianca_id)
+                    return render(request, 'atualizar.html', {'crianca': crianca})
                 except NovaPessoa.DoesNotExist:
-                    return HttpResponse("Criança não encontrada para editar.")
+                    messages.error(request, 'Criança não encontrada para editar.')
+                    return render(request, 'atualizar.html', {'crianca': crianca})
             else:
                 return HttpResponse("ID da criança para editar não fornecido.")
 
