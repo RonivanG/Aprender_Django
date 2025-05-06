@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import NovaPessoa
 from django import forms
@@ -83,23 +83,24 @@ def resetar_senha(request):
 @login_required
 def cadastro_crianca(request):
     if request.method == "GET":
-        return render(request, 'cadastro.html')
+        crianca_id = request.GET.get('id')
+        crianca = None
+        if crianca_id:
+            crianca = get_object_or_404(NovaPessoa, id=crianca_id)
+        return render(request, 'cadastro.html', {'crianca': crianca})
 
     elif request.method == "POST":
-        # Recebendo os dados do formulário
-        nome = request.POST.get('nome')
-        data_nascimento = request.POST.get('data_nascimento')
-        rua = request.POST.get('rua')
-        numero = request.POST.get('numero')
-        bairro = request.POST.get('bairro')
-        responsavel = request.POST.get('responsavel')
-        telefone = request.POST.get('telefone')
-        acao = request.POST.get('acao')  # Pega o valor do botão clicado
+        acao = request.POST.get('acao')
 
-        # Ação de cadastro (Criar)
         if acao == "criar":
+            nome = request.POST.get('nome')
+            data_nascimento = request.POST.get('data_nascimento')
+            rua = request.POST.get('rua')
+            numero = request.POST.get('numero')
+            bairro = request.POST.get('bairro')
+            responsavel = request.POST.get('responsavel')
+            telefone = request.POST.get('telefone')
 
-            # Cria um novo objeto NovaPessoa
             pessoa = NovaPessoa(
                 nome=nome,
                 data_nascimento=data_nascimento,
@@ -109,20 +110,58 @@ def cadastro_crianca(request):
                 nome_responsavel=responsavel,
                 telefone=telefone
             )
-            pessoa.save()  # Salva no banco de dados
-            return HttpResponse("Usuário cadastrado com sucesso.")
-        # Ação de deletar (Deletar)
-        elif acao == "deletar":
-            pessoas = NovaPessoa.objects.filter(nome=nome)  # Busca pelo nome
-            if pessoas.exists():
-                pessoas.delete()  # Deleta o usuário
-                return HttpResponse("Usuário deletado com sucesso.")
-            else:
-                return HttpResponse("Usuário não encontrado para deletar.")
+            pessoa.save()
+            return HttpResponse("Criança cadastrada com sucesso.")
 
         else:
             return HttpResponse("Ação inválida.")
 
+@login_required
+def atualizar_crianca(request):
+    if request.method == "GET":
+        crianca_id = request.GET.get('id')
+        crianca = None
+        if crianca_id:
+            crianca = get_object_or_404(NovaPessoa, id=crianca_id)
+        return render(request, 'atualizar.html', {'crianca': crianca})
+
+    elif request.method == "POST":
+        acao = request.POST.get('acao')
+
+        if acao == "deletar":
+            crianca_id_deletar = request.POST.get('id_deletar')
+            if crianca_id_deletar:
+                try:
+                    crianca = NovaPessoa.objects.get(id=crianca_id_deletar)
+                    crianca.delete()
+                    return HttpResponse("Criança deletada com sucesso.")
+                except NovaPessoa.DoesNotExist:
+                    return HttpResponse("Criança não encontrada para deletar.")
+            else:
+                return HttpResponse("ID da criança para deletar não fornecido.")
+
+        elif acao == "editar":
+            crianca_id_editar = request.POST.get('id_editar')
+            if crianca_id_editar:
+                try:
+                    crianca = NovaPessoa.objects.get(id=crianca_id_editar)
+                    crianca.nome = request.POST.get('nome')
+                    crianca.data_nascimento = request.POST.get('data_nascimento')
+                    crianca.rua = request.POST.get('rua')
+                    crianca.numero = request.POST.get('numero')
+                    crianca.bairro = request.POST.get('bairro')
+                    crianca.nome_responsavel = request.POST.get('responsavel')
+                    crianca.telefone = request.POST.get('telefone')
+                    crianca.save()
+                    return HttpResponse("Dados da criança atualizados com sucesso.")
+                except NovaPessoa.DoesNotExist:
+                    return HttpResponse("Criança não encontrada para editar.")
+            else:
+                return HttpResponse("ID da criança para editar não fornecido.")
+
+        else:
+            return HttpResponse("Ação inválida.")
+        
 @login_required
 def pesquisa_crianca(request):
     nome_param = request.GET.get('nome')

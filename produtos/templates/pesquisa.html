@@ -59,7 +59,7 @@
             </thead>
             <tbody>
                 {% for crianca in resultados %}
-                <tr>
+                <tr onclick="window.location='/produtos/atualizar_crianca/?id={{ crianca.id }}';" style="cursor: pointer;">
                     <td>{{ crianca.nome }}</td>
                     <td>{{ crianca.data_nascimento|date:"d/m/Y" }}</td>
                     <td>{{ crianca.rua }}</td>
