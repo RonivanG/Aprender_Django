@@ -11,8 +11,8 @@ from django.db.models import Q
 def minha_pagina(request):
     return render(request, 'index.html')
 
-def sobre_projeto(request):
-    return render(request, 'sobre.html')
+def contato_projeto(request):
+    return render(request, 'contato.html')
 
 def logout(request):
     auth_logout(request)  # Encerra a sessão do usuário

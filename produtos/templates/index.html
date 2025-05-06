@@ -13,7 +13,7 @@
     <nav>
       <div>
         <a href="{% url 'minha_pagina' %}">Home</a>
-        <a href="{% url 'sobre_projeto' %}">Sobre</a>
+        <a href="{% url 'contato_projeto' %}">Contato</a>
         {% if user.is_authenticated %}
         <a href="{% url 'cadastro_crianca' %}">Cadastrar</a>
         <a href="{% url 'pesquisa_crianca' %}">Pesquisar</a>
