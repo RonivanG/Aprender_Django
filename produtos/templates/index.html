@@ -16,6 +16,7 @@
         <a href="{% url 'sobre_projeto' %}">Sobre</a>
         {% if user.is_authenticated %}
         <a href="{% url 'cadastro_crianca' %}">Cadastrar</a>
+        <a href="{% url 'pesquisa_crianca' %}">Pesquisar</a>
         {% endif %}
       </div>
       {% if user.is_authenticated %}

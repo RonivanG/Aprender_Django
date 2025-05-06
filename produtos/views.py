@@ -6,6 +6,7 @@ from .models import NovaPessoa
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 class ResetSenhaForm(forms.Form):
     username = forms.CharField(max_length=150, label='Nome de Usuário')
@@ -39,6 +40,28 @@ def minha_pagina(request):
 def sobre_projeto(request):
     return render(request, 'sobre.html')
 
+def pesquisa_crianca(request):
+    nome_param = request.GET.get('nome')
+    responsavel_param = request.GET.get('responsavel')
+    resultados = []
+
+    if nome_param:
+        if responsavel_param:
+            # Pesquisa por nome E responsável
+            resultados = NovaPessoa.objects.filter(
+                Q(nome__icontains=nome_param) & Q(responsavel__icontains=responsavel_param)
+            )
+        else:
+            # Pesquisa apenas por nome
+            resultados = NovaPessoa.objects.filter(nome__icontains=nome_param)
+    else:
+        # Se nenhum nome foi fornecido (o campo é obrigatório no HTML,
+        # mas é bom ter uma verificação no backend também)
+        mensagem_erro = "O nome da criança é obrigatório para a pesquisa."
+        return render(request, 'pesquisa.html', {'mensagem_erro': mensagem_erro})
+
+    context = {'resultados': resultados}
+    return render(request, 'pesquisa.html', context)
 
 def logout(request):
     auth_logout(request)  # Encerra a sessão do usuário
