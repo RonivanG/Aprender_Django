@@ -3,14 +3,14 @@ body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f7fc;
-  color: #333;
+  background-color: #F5E8D3; /* areia clara */
+  color: #3B2F2F; /* marrom escuro acinzentado */
   line-height: 1.6;
 }
 
 /* Menu de navegação fixo no topo */
 nav {
-  background-color: #5c6bc0; /* Um tom de azul */
+  background-color: #8B6D3B; /* marrom médio */
   padding: 15px 30px;
   display: flex;
   justify-content: space-between;
@@ -20,7 +20,7 @@ nav {
   top: 0;
   left: 0;
   z-index: 1000;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(92, 68, 34, 0.1); /* sombra marrom escura */
 }
 
 nav div {
@@ -39,33 +39,33 @@ nav a {
 }
 
 nav a:hover {
-  background-color: #3f51b5; /* Um tom mais escuro de azul */
+  background-color: #5C4422; /* marrom escuro */
   transform: translateY(-2px);
 }
 
 /* Estilos para o cabeçalho */
 header {
-  background-color: #e0f2f7; /* Um tom de azul bem claro */
+  background-color: #EFE5D1; /* bege claro */
   padding: 80px 30px;
   text-align: center;
-  margin-top: 60px; /* Espaço para o menu fixo */
+  margin-top: 60px;
 }
 
 header h1 {
   font-size: 3.5em;
-  color: #3f51b5;
+  color: #5C4422; /* marrom escuro */
   margin-bottom: 10px;
 }
 
 header p {
   font-size: 1.2em;
-  color: #555;
+  color: #776B5D; /* cinza quente */
   font-style: italic;
 }
 
 header strong {
   font-weight: bold;
-  color: #333;
+  color: #3B2F2F;
 }
 
 /* Estilos para a seção principal */
@@ -75,111 +75,111 @@ section {
   padding: 30px;
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(92, 68, 34, 0.1);
 }
 
 section h2 {
   font-size: 2.5em;
-  color: #3f51b5;
+  color: #8B6D3B; /* marrom médio */
   margin-top: 0;
   margin-bottom: 20px;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid #C5A25C; /* mostarda suave */
   padding-bottom: 10px;
 }
 
 section p {
   font-size: 1.1em;
-  color: #555;
+  color: #5C4422; /* marrom escuro */
   margin-bottom: 15px;
 }
 
 section strong {
   font-weight: bold;
-  color: #333;
+  color: #3B2F2F;
 }
 
 /* Estilos para o rodapé */
 footer {
-  background-color: #f5f5f5;
+  background-color: #EFE5D1; /* bege claro */
   padding: 20px 30px;
   text-align: center;
   font-size: 0.9em;
-  color: #777;
-  border-top: 1px solid #eee;
+  color: #776B5D;
+  border-top: 1px solid #ddd2bc;
   margin-top: 30px;
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
   header {
-      padding: 60px 20px;
-      margin-top: 55px;
+    padding: 60px 20px;
+    margin-top: 55px;
   }
 
   header h1 {
-      font-size: 2.5em;
+    font-size: 2.5em;
   }
 
   header p {
-      font-size: 1em;
+    font-size: 1em;
   }
 
   section {
-      padding: 20px;
-      margin: 20px;
+    padding: 20px;
+    margin: 20px;
   }
 
   section h2 {
-      font-size: 2em;
-      margin-bottom: 15px;
-      padding-bottom: 8px;
+    font-size: 2em;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
   }
 
   section p {
-      font-size: 1em;
-      margin-bottom: 10px;
+    font-size: 1em;
+    margin-bottom: 10px;
   }
 
   nav a {
-      font-size: 16px;
-      margin: 0 10px;
-      padding: 8px 15px;
+    font-size: 16px;
+    margin: 0 10px;
+    padding: 8px 15px;
   }
 }
 
 @media (max-width: 600px) {
   nav {
-      padding: 10px 15px;
-      flex-direction: column;
-      align-items: flex-start;
+    padding: 10px 15px;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   nav div {
-      width: 100%;
-      margin-bottom: 10px;
+    width: 100%;
+    margin-bottom: 10px;
   }
 
   nav a {
-      margin: 5px 0;
-      padding: 8px 12px;
-      display: block;
-      border-radius: 0;
+    margin: 5px 0;
+    padding: 8px 12px;
+    display: block;
+    border-radius: 0;
   }
 
   header {
-      padding: 40px 15px;
+    padding: 40px 15px;
   }
 
   header h1 {
-      font-size: 2em;
+    font-size: 2em;
   }
 
   section {
-      margin: 15px;
-      padding: 15px;
+    margin: 15px;
+    padding: 15px;
   }
 
   section h2 {
-      font-size: 1.8em;
+    font-size: 1.8em;
   }
 }

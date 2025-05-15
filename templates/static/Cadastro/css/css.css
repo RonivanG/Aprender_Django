@@ -5,14 +5,14 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f7fc;
-    color: #333;
+    background-color: #F5E8D3; /* areia clara */
+    color: #3B2F2F; /* marrom escuro acinzentado */
     line-height: 1.6;
 }
 
 /* Menu de navegação fixo no topo (base) */
 nav {
-    background-color: #5c6bc0; /* Um tom de azul */
+    background-color: #8B6D3B; /* marrom médio */
     padding: 15px 30px;
     display: flex;
     justify-content: space-between;
@@ -22,7 +22,7 @@ nav {
     top: 0;
     left: 0;
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(92, 68, 34, 0.2); /* sombra marrom escuro */
 }
 
 nav div {
@@ -41,35 +41,35 @@ nav a {
 }
 
 nav a:hover {
-    background-color: #3f51b5; /* Um tom mais escuro de azul */
+    background-color: #5C4422; /* marrom escuro */
     transform: translateY(-2px);
 }
 
 /* Estilos para a seção principal (ajustes para o formulário de cadastro) */
 section {
-    max-width: 700px; /* Reduz a largura máxima para o formulário */
-    margin: 120px auto; /* Espaço para o menu fixo e centralização */
+    max-width: 700px;
+    margin: 120px auto;
     padding: 30px;
-    background-color: #fff;
+    background-color: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(92, 68, 34, 0.1);
 }
 
 section h1 {
     font-size: 2.2em;
-    color: #3f51b5; /* Tom de azul */
+    color: #8B6D3B; /* marrom médio */
     margin-bottom: 20px;
     text-align: center;
 }
 
 .success {
-    color: green;
+    color: #3B7A00; /* verde musgo vibrante */
     display: block;
     margin-top: 10px;
 }
 
 .error {
-    color: red;
+    color: #B33A3A; /* vermelho escuro */
     display: block;
     margin-top: 10px;
 }
@@ -87,7 +87,7 @@ form {
 }
 
 .form-row > div {
-    flex: 1; /* Distribuir espaço igualmente entre os elementos filhos */
+    flex: 1;
 }
 
 .form-group {
@@ -97,7 +97,7 @@ form {
 label {
     display: block;
     font-size: 1em;
-    color: #555;
+    color: #5C4422; /* marrom escuro */
     margin-bottom: 5px;
     font-weight: bold;
 }
@@ -108,10 +108,12 @@ input[type="date"] {
     padding: 12px;
     font-size: 1em;
     margin-top: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #C5A25C; /* mostarda */
     border-radius: 4px;
-    width: calc(100% - 24px); /* Considerar o padding e a borda */
+    width: calc(100% - 24px);
     box-sizing: border-box;
+    background-color: #fdfaf6; /* bege quase branco */
+    color: #3B2F2F; /* marrom escuro acinzentado */
 }
 
 .button-group {
@@ -132,15 +134,16 @@ input[type="date"] {
 }
 
 .button-group button[value="criar"] {
-    background-color: #4CAF50; /* Verde */
+    background-color: #4CAF50; /* verde oliva */
 }
 
 .button-group button[value="deletar"] {
-    background-color: #f44336; /* Vermelho */
+    background-color: #B33A3A; /* vermelho escuro */
 }
 
 .button-group button[value="pesquisar"] {
-    background-color: #008CBA; /* Azul */
+    background-color: #C5A25C; /* mostarda */
+    color: #3B4F2B; /* verde escuro */
 }
 
 .button-group button:hover {

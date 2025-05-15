@@ -5,7 +5,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Página Principal</title>
+    <title>Estrelas Mudam de Lugar</title>
+    <link rel="icon" href="{% static 'Index/img/Logo girassol.png' %}" type="image/png" />
     <link rel="stylesheet" href="{% static 'Index/css/css.css' %}" />
   </head>
 
@@ -27,13 +28,90 @@
     </nav>
 
     <section>
-      <h1>Bem-vindo à Página Principal!</h1>
+      <h1>🌻 Instituto Estrelas Mudam de Lugar 🌻</h1>
+      <h2>
+        Transformando saudade em amor, dor em esperança e estrelas em luz para
+        muitas crianças
+      </h2>
+
+      <blockquote>
+        "A vida não foi feita para ser entendida, mas para transformar dor em
+        evolução espiritual. E, em nome das nossas estrelas, queremos alcançar
+        quantas crianças nosso trabalho permitir."
+      </blockquote>
+
+      <hr />
+
+      <h3>✨ Nossa História</h3>
       <p>
-        Esta é a página inicial do site. Aqui você pode explorar mais sobre o
-        projeto {% if user.is_authenticated %} e cadastrar novas crianças. {%
-        else %} e, se você tiver uma conta, pode fazer login para cadastrar
-        novas crianças. {% endif %}
+        O Instituto Estrelas Mudam de Lugar nasceu da dor mais profunda que uma
+        mãe pode sentir: a perda de uma filha. Em 2007, após um trágico acidente
+        de carro, Carol partiu aos 9 anos, e se juntou à sua irmã Thais, que já
+        havia "mudado de lugar" anos antes. Mesmo em meio ao luto, sua mãe
+        decidiu transformar a dor em solidariedade.
+      </p>
+      <p>
+        Na tentativa de amenizar a saudade, ela organizou uma pequena festa de
+        aniversário em homenagem a Carol, com bolo, refrigerante e saquinhos de
+        doces para cerca de 50 crianças de um bairro carente. A alegria no rosto
+        das crianças reacendeu uma chama: a de espalhar amor como Carol fazia em
+        vida.
+      </p>
+      <p>
+        Assim surgiu a ONG Estrelas Mudam de Lugar Carol & Thais — uma homenagem
+        viva a essas duas meninas que hoje brilham no céu, mas continuam
+        iluminando a Terra.
+      </p>
+
+      <hr />
+
+      <h3>🎁 O que fazemos</h3>
+      <p>
+        A ONG organiza todos os anos festas para crianças carentes de bairros de
+        Ana Dias (SP), oferecendo:
+      </p>
+      <ul>
+        <li>Roupas, brinquedos e calçados</li>
+        <li>Guloseimas, comidas quentes e muito carinho</li>
+        <li>
+          Gincanas, brincadeiras, palhaços e a presença do nosso querido Papai
+          Noel
+        </li>
+        <li>Apoio e presença afetiva para famílias em vulnerabilidade</li>
+      </ul>
+      <p>
+        Mesmo durante a pandemia, não deixamos de estar presentes:
+        <strong>882 crianças foram contempladas</strong> com kits de brinquedos
+        e doces, mantendo viva a missão de espalhar amor.
+      </p>
+
+      <hr />
+
+      <h3>💛 Por que doar?</h3>
+      <p>
+        Cada doação é uma semente de amor que floresce em esperança. Você não
+        estará apenas contribuindo com uma festa — estará
+        <strong>ajudando a manter vivo o legado de duas crianças que amavam ajudar opróximo</strong>
+        , e que hoje inspiram centenas de outras a acreditarem em um futuro melhor.
+      </p>
+      <p>
+        <strong>Transforme saudade em ação. Transforme sua doação em sorrisos.</strong>
+      </p>
+
+      <hr />
+
+      <h3>🙏 Faça parte dessa missão</h3>
+      <p>
+        Ajude-nos a continuar levando luz a quem mais precisa. Sua doação pode
+        mudar o Natal de uma criança, pode aquecer corações e manter as estrelas
+        de Carol e Thais brilhando mais forte do que nunca.
       </p>
     </section>
+    <footer>
+      <p>
+        Este projeto é dedicado a todos que acreditam que mudanças podem ser
+        poderosas e transformadoras.
+      </p>
+    </footer>
   </body>
 </html>

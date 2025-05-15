@@ -1,18 +1,16 @@
-/* Arquivo: Pesquisar/static/Pesquisar/css/css.css */
-
 /* Estilos gerais do corpo (base) */
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f7fc;
-    color: #333;
+    background-color: #F5E8D3; /* bege claro */
+    color: #3B2F2F; /* marrom escuro acinzentado */
     line-height: 1.6;
 }
 
 /* Menu de navegação fixo no topo (base) */
 nav {
-    background-color: #5c6bc0; /* Um tom de azul */
+    background-color: #8B6D3B; /* marrom médio */
     padding: 15px 30px;
     display: flex;
     justify-content: space-between;
@@ -22,7 +20,7 @@ nav {
     top: 0;
     left: 0;
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(92, 68, 34, 0.1); /* sombra marrom suave */
 }
 
 nav div {
@@ -41,24 +39,24 @@ nav a {
 }
 
 nav a:hover {
-    background-color: #3f51b5; /* Um tom mais escuro de azul */
+    background-color: #5C4422; /* marrom escuro */
     transform: translateY(-2px);
 }
 
 /* Estilos para a seção principal (ajustes para o formulário de pesquisa) */
 .container {
     max-width: 960px;
-    margin: 120px auto 20px auto; /* Ajuste da margem superior para considerar o menu fixo */
+    margin: 120px auto 20px auto;
     padding: 30px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+    background-color: #FAF7F2; /* tom claro neutro puxado pro areia */
+    border: 1px solid #ddcdb6;
     border-radius: 5px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Adicionando sombra similar à section do base */
+    box-shadow: 0 4px 10px rgba(92, 68, 34, 0.1);
 }
 
 h1, h2 {
     text-align: center;
-    color: #3f51b5; /* Tom de azul do título principal */
+    color: #5C4422; /* marrom escuro */
     margin-bottom: 20px;
 }
 
@@ -69,7 +67,7 @@ h1, h2 {
 }
 
 .form-row > div {
-    flex: 1; /* Distribuir espaço igualmente entre os campos do formulário */
+    flex: 1;
 }
 
 .form-group {
@@ -80,36 +78,37 @@ label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #555;
-    font-size: 1em; /* Mantendo o tamanho da fonte do label do base */
+    color: #776B5D; /* cinza quente */
+    font-size: 1em;
 }
 
 input[type="text"] {
     width: calc(100% - 12px);
-    padding: 12px; /* Mantendo o padding do input do base */
-    border: 1px solid #ccc;
+    padding: 12px;
+    border: 1px solid #C5A25C; /* mostarda suave */
     border-radius: 4px;
     box-sizing: border-box;
-    font-size: 1em; /* Mantendo o tamanho da fonte do input do base */
+    font-size: 1em;
     margin-top: 5px;
+    background-color: #FFFDF9;
 }
 
 button[type="submit"] {
-    background-color: #008CBA; /* Azul para pesquisar */
+    background-color: #8B6D3B; /* marrom médio */
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    padding: 12px 15px; /* Mantendo o padding do botão do base */
-    font-size: 1em; /* Mantendo o tamanho da fonte do botão do base */
+    padding: 12px 15px;
+    font-size: 1em;
     border: none;
     border-radius: 4px;
-    margin-top: 20px; /* Adicionando margem superior para separar do formulário */
-    width: 100%; /* Ocupar a largura total em telas menores */
+    margin-top: 20px;
+    width: 100%;
 }
 
 button[type="submit"]:hover {
-    background-color: #0077b3;
-    opacity: 0.9; /* Adicionando um efeito de hover similar aos outros botões */
+    background-color: #5C4422; /* marrom escuro */
+    opacity: 0.9;
 }
 
 .resultados-tabela {
@@ -120,22 +119,22 @@ button[type="submit"]:hover {
 
 .resultados-tabela th,
 .resultados-tabela td {
-    border: 1px solid #ddd;
+    border: 1px solid #ddcdb6;
     padding: 8px;
     text-align: left;
 }
 
 .resultados-tabela th {
-    background-color: #f2f2f2;
+    background-color: #EFE5D1; /* areia clara */
     font-weight: bold;
 }
 
 .resultados-tabela tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #FAF7F2;
 }
 
 .resultados-tabela tbody tr:hover {
-    background-color: #e0f7fa;
+    background-color: #E6D7B8; /* hover mais suave e quente */
 }
 
 /* Responsividade para telas menores (base) */

@@ -2,17 +2,17 @@
 
 /* Estilos gerais do corpo (base) */
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f7fc;
-    color: #333;
-    line-height: 1.6;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #F5E8D3; /* areia clara */
+  color: #3B2F2F; /* marrom escuro acinzentado */
+  line-height: 1.6;
 }
 
 /* Menu de navegação fixo no topo (base) */
 nav {
-    background-color: #5c6bc0; /* Um tom de azul */
+    background-color: #8B6D3B; /* marrom quente, terroso */
     padding: 15px 30px;
     display: flex;
     justify-content: space-between;
@@ -22,7 +22,7 @@ nav {
     top: 0;
     left: 0;
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(139, 109, 59, 0.3); /* sombra marrom suave */
 }
 
 nav div {
@@ -41,7 +41,8 @@ nav a {
 }
 
 nav a:hover {
-    background-color: #3f51b5; /* Um tom mais escuro de azul */
+    background-color: #C5A25C; /* amarelo mostarda */
+    color: #3B4F2B; /* verde escuro para contraste */
     transform: translateY(-2px);
 }
 
@@ -52,24 +53,24 @@ section {
     padding: 30px;
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(139, 109, 59, 0.1); /* sombra marrom clara */
 }
 
 section h1 {
     font-size: 2.2em;
-    color: #3f51b5; /* Tom de azul */
+    color: #8B6D3B; /* marrom */
     margin-bottom: 20px;
     text-align: center;
 }
 
 .success {
-    color: green;
+    color: #3B7A00; /* verde vibrante */
     display: block;
     margin-top: 10px;
 }
 
 .error {
-    color: red;
+    color: #b33a3a; /* vermelho escuro */
     display: block;
     margin-top: 10px;
 }
@@ -97,7 +98,7 @@ form {
 label {
     display: block;
     font-size: 1em;
-    color: #555;
+    color: #555555; /* cinza médio */
     margin-bottom: 5px;
     font-weight: bold;
 }
@@ -108,10 +109,12 @@ input[type="date"] {
     padding: 12px;
     font-size: 1em;
     margin-top: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #c4b69b; /* marrom claro */
     border-radius: 4px;
     width: calc(100% - 24px); /* Considerar o padding e a borda */
     box-sizing: border-box;
+    background-color: #faf5e6; /* bege claro, suave */
+    color: #4b3b1b; /* marrom escuro */
 }
 
 .button-group {
@@ -132,15 +135,16 @@ input[type="date"] {
 }
 
 .button-group button[value="editar"] {
-    background-color: #4CAF50; /* Verde */
+    background-color: #4CAF50; /* verde */
 }
 
 .button-group button[value="deletar"] {
-    background-color: #f44336; /* Vermelho */
+    background-color: #b33a3a; /* vermelho escuro */
 }
 
 .button-group button[value="pesquisar"] {
-    background-color: #008CBA; /* Azul */
+    background-color: #C5A25C; /* amarelo mostarda */
+    color: #3B4F2B; /* verde escuro */
 }
 
 .button-group button:hover {
