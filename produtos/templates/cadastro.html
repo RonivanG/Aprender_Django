@@ -6,7 +6,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro</title>
-    <link rel="icon" href="{% static 'Index/img/Logo girassol.png' %}" type="image/png" />
+    <link
+      rel="icon"
+      href="{% static 'Index/img/Logo girassol.png' %}"
+      type="image/png"
+    />
     <link rel="stylesheet" href="{% static 'Cadastro/css/css.css' %}" />
   </head>
   <body>
@@ -29,15 +33,18 @@
     <section>
       <h1>Cadastrar Criança</h1>
 
-      {% if messages %} 
-        {% for message in messages %} 
+      {% if messages %}
+        {% for message in messages %}
           {% if 'success' in message.tags %}
             <label class="success">{{ message }}</label>
-          {% elif 'error' in message.tags %}
-            <label class="error">{{ message }}</label>
-          {% endif %} 
-        {% endfor %} 
+          {% else %}
+            {% if 'error' in message.tags %}
+              <label class="error">{{ message }}</label>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
       {% endif %}
+
 
       <form action="{% url 'cadastro_crianca' %}" method="POST">
         {% csrf_token %}
@@ -88,5 +95,12 @@
         </div>
       </form>
     </section>
+
+    <footer>
+      <p>
+        Este projeto é dedicado a todos que acreditam que mudanças podem ser
+        poderosas e transformadoras.
+      </p>
+    </footer>
   </body>
 </html>

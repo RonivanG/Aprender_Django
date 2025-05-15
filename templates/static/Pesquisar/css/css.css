@@ -94,7 +94,7 @@ input[type="text"] {
 }
 
 button[type="submit"] {
-    background-color: #8B6D3B; /* marrom médio */
+    background-color: #4CAF50; /* verde oliva */
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -107,9 +107,10 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #5C4422; /* marrom escuro */
+    background-color: #3E8E41; /* verde oliva mais escuro para hover */
     opacity: 0.9;
 }
+
 
 .resultados-tabela {
     width: 100%;
@@ -135,6 +136,15 @@ button[type="submit"]:hover {
 
 .resultados-tabela tbody tr:hover {
     background-color: #E6D7B8; /* hover mais suave e quente */
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #EDE0CE; /* bege acinzentado */
+  color: #776B5D;
+  margin-top: 30px;
+  border-top: 1px solid #DDC9AA;
 }
 
 /* Responsividade para telas menores (base) */

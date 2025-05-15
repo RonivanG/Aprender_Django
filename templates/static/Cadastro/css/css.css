@@ -150,6 +150,15 @@ input[type="date"] {
     opacity: 0.9;
 }
 
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #EDE0CE; /* bege acinzentado */
+  color: #776B5D;
+  margin-top: 30px;
+  border-top: 1px solid #DDC9AA;
+}
+
 /* Responsividade para telas menores */
 @media (max-width: 768px) {
     section {

@@ -175,25 +175,43 @@ def atualizar_crianca(request):
         
 @login_required
 def pesquisa_crianca(request):
-    nome_param = request.GET.get('nome')
-    responsavel_param = request.GET.get('nome_responsavel')
+    nome_param = request.GET.get('nome', '').strip().lower()
+    responsavel_param = request.GET.get('nome_responsavel', '').strip()
     resultados = []
 
-    if nome_param:
+    if nome_param == 'todos':
         if responsavel_param:
-            # Pesquisa por nome E responsável
+            # Todas as crianças com esse responsável
+            resultados = NovaPessoa.objects.filter(
+                nome_responsavel__icontains=responsavel_param
+            ).order_by('-data_nascimento')
+        else:
+            # Todas as crianças
+            resultados = NovaPessoa.objects.all().order_by('-data_nascimento')
+    elif nome_param:
+        if responsavel_param:
+            # Nome E responsável
             resultados = NovaPessoa.objects.filter(
                 Q(nome__icontains=nome_param) & Q(nome_responsavel__icontains=responsavel_param)
-            )
+            ).order_by('-data_nascimento')
         else:
-            # Pesquisa apenas por nome
-            resultados = NovaPessoa.objects.filter(nome__icontains=nome_param)
+            # Apenas nome
+            resultados = NovaPessoa.objects.filter(
+                nome__icontains=nome_param
+            ).order_by('-data_nascimento')
     else:
-        # Se nenhum nome foi fornecido (o campo é obrigatório no HTML,
-        # mas é bom ter uma verificação no backend também)
+        # Nenhum nome fornecido
         mensagem_erro = "O nome da criança é obrigatório para a pesquisa."
         return render(request, 'pesquisa.html', {'mensagem_erro': mensagem_erro})
 
-    context = {'resultados': resultados}
-    return render(request, 'pesquisa.html', context)
+    if not resultados.exists():
+        mensagem_erro = "Nenhuma criança encontrada com os critérios fornecidos."
+        return render(request, 'pesquisa.html', {'mensagem_erro': mensagem_erro})
 
+    maiores_18 = sum([crianca.idade >= 18 for crianca in resultados])
+    
+    context = {
+    'resultados': resultados,
+    'maiores_18': maiores_18,
+    }
+    return render(request, 'pesquisa.html', context)
