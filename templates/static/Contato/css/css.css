@@ -1,14 +1,12 @@
-/* Estilos gerais do corpo */
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #F5E8D3; /* areia clara */
-  color: #3B2F2F; /* marrom escuro acinzentado */
+  background-color: #F5E8D3; /* bege claro */
+  color: #3B2F2F;            /* marrom escuro acinzentado */
   line-height: 1.6;
 }
 
-/* Menu de navegação fixo no topo */
 nav {
   background-color: #8B6D3B; /* marrom médio */
   padding: 15px 30px;
@@ -18,14 +16,8 @@ nav {
   position: fixed;
   width: 100%;
   top: 0;
-  left: 0;
   z-index: 1000;
-  box-shadow: 0 2px 4px rgba(92, 68, 34, 0.1); /* sombra marrom escura */
-}
-
-nav div {
-  display: flex;
-  align-items: center;
+  box-shadow: 0 2px 4px rgba(92, 68, 34, 0.1);
 }
 
 nav a {
@@ -43,143 +35,73 @@ nav a:hover {
   transform: translateY(-2px);
 }
 
-/* Estilos para o cabeçalho */
 header {
-  background-color: #EFE5D1; /* bege claro */
+  background-color: #E8D8C3; /* bege amarelado */
   padding: 80px 30px;
   text-align: center;
   margin-top: 60px;
 }
 
 header h1 {
-  font-size: 3.5em;
-  color: #5C4422; /* marrom escuro */
+  font-size: 3em;
+  color: #8B6D3B; /* marrom médio */
   margin-bottom: 10px;
 }
 
-header p {
-  font-size: 1.2em;
-  color: #776B5D; /* cinza quente */
-  font-style: italic;
-}
-
-header strong {
-  font-weight: bold;
-  color: #3B2F2F;
-}
-
-/* Estilos para a seção principal */
 section {
-  max-width: 900px;
-  margin: 30px auto;
-  padding: 30px;
+  max-width: 800px;
+  margin: 40px auto;
   background-color: #fff;
+  padding: 30px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(92, 68, 34, 0.1);
 }
 
 section h2 {
-  font-size: 2.5em;
   color: #8B6D3B; /* marrom médio */
-  margin-top: 0;
   margin-bottom: 20px;
-  border-bottom: 2px solid #C5A25C; /* mostarda suave */
-  padding-bottom: 10px;
 }
 
-section p {
-  font-size: 1.1em;
-  color: #5C4422; /* marrom escuro */
-  margin-bottom: 15px;
+form {
+  display: flex;
+  flex-direction: column;
 }
 
-section strong {
+form label {
+  margin-top: 15px;
   font-weight: bold;
-  color: #3B2F2F;
 }
 
-/* Estilos para o rodapé */
+form input,
+form textarea {
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #C5A25C; /* mostarda suave */
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+form button {
+  margin-top: 20px;
+  background-color: #8B6D3B; /* marrom médio */
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #5C4422; /* marrom escuro */
+}
+
 footer {
-  background-color: #EFE5D1; /* bege claro */
-  padding: 20px 30px;
   text-align: center;
-  font-size: 0.9em;
+  padding: 20px;
+  background-color: #EDE0CE; /* bege acinzentado */
   color: #776B5D;
-  border-top: 1px solid #ddd2bc;
   margin-top: 30px;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-  header {
-    padding: 60px 20px;
-    margin-top: 55px;
-  }
-
-  header h1 {
-    font-size: 2.5em;
-  }
-
-  header p {
-    font-size: 1em;
-  }
-
-  section {
-    padding: 20px;
-    margin: 20px;
-  }
-
-  section h2 {
-    font-size: 2em;
-    margin-bottom: 15px;
-    padding-bottom: 8px;
-  }
-
-  section p {
-    font-size: 1em;
-    margin-bottom: 10px;
-  }
-
-  nav a {
-    font-size: 16px;
-    margin: 0 10px;
-    padding: 8px 15px;
-  }
-}
-
-@media (max-width: 600px) {
-  nav {
-    padding: 10px 15px;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  nav div {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  nav a {
-    margin: 5px 0;
-    padding: 8px 12px;
-    display: block;
-    border-radius: 0;
-  }
-
-  header {
-    padding: 40px 15px;
-  }
-
-  header h1 {
-    font-size: 2em;
-  }
-
-  section {
-    margin: 15px;
-    padding: 15px;
-  }
-
-  section h2 {
-    font-size: 1.8em;
-  }
+  border-top: 1px solid #DDC9AA;
 }
