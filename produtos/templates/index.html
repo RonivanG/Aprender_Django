@@ -11,6 +11,46 @@
   </head>
 
   <body>
+    <!-- Ferramentas de acessibilidade -->
+  <div style="position: fixed; top: 10px; right: 10px; z-index: 999;">
+    <button onclick="aumentarFonte()" aria-label="Aumentar fonte">A+</button>
+    <button onclick="diminuirFonte()" aria-label="Diminuir fonte">A-</button>
+    <button onclick="toggleContraste()" aria-label="Ativar/desativar alto contraste">Alto Contraste</button>
+  </div>
+  <script>
+    function aumentarFonte() {
+      document.body.style.fontSize = "larger";
+    }
+    function diminuirFonte() {
+      document.body.style.fontSize = "smaller";
+    }
+    function toggleContraste() {
+      document.body.classList.toggle('alto-contraste');
+    }
+  </script>
+  <style>
+    .alto-contraste {
+      background: #000 !important;
+      color: #fff !important;
+    }
+    .alto-contraste a, .alto-contraste h1, .alto-contraste h2, .alto-contraste h3, .alto-contraste p, .alto-contraste li {
+      color: #fff !important;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+  </style>
+
+
+
+
     <nav aria-label="Navegação principal">
       <h2 class="sr-only">Navegação principal</h2>
       <div>
