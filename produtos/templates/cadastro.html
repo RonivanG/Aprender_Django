@@ -19,82 +19,109 @@
         <a href="{% url 'minha_pagina' %}">Home</a>
         <a href="{% url 'contato_projeto' %}">Contato</a>
         {% if user.is_authenticated %}
-        <a href="{% url 'cadastro_crianca' %}">Cadastrar</a>
-        <a href="{% url 'pesquisa_crianca' %}">Pesquisar</a>
+          <a href="{% url 'cadastro_crianca' %}">Cadastrar</a>
+          <a href="{% url 'pesquisa_crianca' %}">Pesquisar</a>
         {% endif %}
       </div>
-      {% if user.is_authenticated %}
-      <a href="{% url 'logout' %}">Logout</a>
-      {% else %}
-      <a href="{% url 'login' %}">Login</a>
-      {% endif %}
+      <div>
+        {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+          <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+      </div>
     </nav>
 
-    <section>
-      <h1>Cadastrar Criança</h1>
+    <main>
+      <section>
+        <h1>Cadastrar Criança</h1>
 
-      {% if messages %}
-        {% for message in messages %}
-          {% if 'success' in message.tags %}
-            <label class="success">{{ message }}</label>
-          {% else %}
-            {% if 'error' in message.tags %}
+        {% if messages %}
+          {% for message in messages %}
+            {% if 'success' in message.tags %}
+              <label class="success">{{ message }}</label>
+            {% elif 'error' in message.tags %}
               <label class="error">{{ message }}</label>
             {% endif %}
-          {% endif %}
-        {% endfor %}
-      {% endif %}
+          {% endfor %}
+        {% endif %}
 
+        <form action="{% url 'cadastro_crianca' %}" method="POST" autocomplete="off">
+          {% csrf_token %}
 
-      <form action="{% url 'cadastro_crianca' %}" method="POST">
-        {% csrf_token %}
-
-        <!-- Nome e Data de Nascimento lado a lado -->
-        <div class="form-row">
-          <div class="form-group">
-            <label for="nome">Nome:</label>
-            <input
-              type="text"
-              name="nome"
-              id="nome"
-              placeholder="Digite seu nome"
-              required
-            />
+          <!-- Nome e Data de Nascimento lado a lado -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nome">Nome:</label>
+              <input
+                type="text"
+                name="nome"
+                id="nome"
+                placeholder="Digite seu nome"
+                required
+                autocomplete="name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="data_nascimento">Data de Nascimento:</label>
+              <input
+                type="date"
+                name="data_nascimento"
+                id="data_nascimento"
+                required
+                autocomplete="bday"
+              />
+            </div>
           </div>
-          <div class="form-group">
-            <label for="data_nascimento">Data de Nascimento:</label>
-            <input
-              type="date"
-              name="data_nascimento"
-              id="data_nascimento"
-              required
-            />
+
+          <!-- Rua, Número e Bairro lado a lado -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="rua">Rua:</label>
+              <input type="text" name="rua" id="rua" placeholder="Rua" required autocomplete="address-line1" />
+            </div>
+            <div class="form-group">
+              <label for="numero">Número:</label>
+              <input type="number" name="numero" id="numero" placeholder="Número" required autocomplete="address-line2" />
+            </div>
+            <div class="form-group">
+              <label for="bairro">Bairro:</label>
+              <input type="text" name="bairro" id="bairro" placeholder="Bairro" required autocomplete="address-level2" />
+            </div>
           </div>
-        </div>
 
-        <!-- Rua, Número e Bairro lado a lado -->
-        <div class="form-row">
-          <input type="text" name="rua" placeholder="Rua" required />
-          <input type="number" name="numero" placeholder="Número" required />
-          <input type="text" name="bairro" placeholder="Bairro" required />
-        </div>
+          <!-- Nome do Responsável e Telefone lado a lado -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="responsavel">Nome do responsável:</label>
+              <input
+                type="text"
+                name="responsavel"
+                id="responsavel"
+                placeholder="Nome do responsável"
+                required
+                autocomplete="organization"
+              />
+            </div>
+            <div class="form-group">
+              <label for="telefone">Telefone:</label>
+              <input
+                type="tel"
+                name="telefone"
+                id="telefone"
+                placeholder="Telefone"
+                required
+                autocomplete="tel"
+              />
+            </div>
+          </div>
 
-        <!-- Nome do Responsável e Telefone lado a lado -->
-        <div class="form-row">
-          <input
-            type="text"
-            name="responsavel"
-            placeholder="Nome do responsável"
-            required
-          />
-          <input type="text" name="telefone" placeholder="Telefone" required />
-        </div>
-
-        <div class="button-group">
-          <button type="submit" name="acao" value="criar">Criar</button>
-        </div>
-      </form>
-    </section>
+          <div class="button-group">
+            <button type="submit" name="acao" value="criar">Criar</button>
+          </div>
+        </form>
+      </section>
+    </main>
 
     <footer>
       <p>
